@@ -43,6 +43,8 @@
 #         raise HTTPException(status_code=500, detail=str(e))
 
 
+#Original
+
 from fastapi import FastAPI, HTTPException
 import mysql.connector
 from dotenv import load_dotenv
