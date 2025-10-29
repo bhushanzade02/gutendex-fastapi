@@ -18,12 +18,45 @@
 #     return {"books": books}
 
 
-import mysql.connector
-from fastapi import HTTPException
-import os
-from dotenv import load_dotenv
+# import mysql.connector
+# from fastapi import HTTPException
+# import os
+# from dotenv import load_dotenv
 
+# load_dotenv()
+
+# @app.get("/books")
+# def get_books():
+#     try:
+#         conn = mysql.connector.connect(
+#             host=os.getenv("DB_HOST"),
+#             user=os.getenv("DB_USER"),
+#             password=os.getenv("DB_PASSWORD"),
+#             database=os.getenv("DB_NAME")
+#         )
+#         cursor = conn.cursor(dictionary=True)
+#         cursor.execute("SELECT * FROM books_book LIMIT 10;")
+#         results = cursor.fetchall()
+#         conn.close()
+#         return results
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
+
+from fastapi import FastAPI, HTTPException
+import mysql.connector
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
 load_dotenv()
+
+# Initialize FastAPI app FIRST
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "Gutendex API is running!"}
 
 @app.get("/books")
 def get_books():
